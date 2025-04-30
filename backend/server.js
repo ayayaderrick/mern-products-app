@@ -3,6 +3,7 @@ import express from "express";
 import connectDB from "./config/db.js";
 import mongoose from "mongoose";
 import productRoutes from "./routes/api/products.js";
+import cors from "cors";
 
 dotenv.config();
 connectDB();
@@ -11,6 +12,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static("public"));
+
+app.use(cors());
 
 //Routes
 app.use("/products", productRoutes);
