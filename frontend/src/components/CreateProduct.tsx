@@ -1,4 +1,3 @@
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,20 +8,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { formSchema } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  price: z.string().min(1, {
-    message: "Price must not be empty.",
-  }),
-  image: z.string().url({
-    message: "Image must be a valid URL.",
-  }),
-});
+import { z } from "zod";
 
 const CreateProduct = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,15 +40,16 @@ const CreateProduct = () => {
     toast.success("Product created successfully.");
     // Reset the form after submission
     form.reset();
-
-    // console.log(values);
   }
   return (
     <div className="max-w-5xl mx-auto mt-20">
+      <h1 className="text-xl sm:text-3xl font-semibold text-center mb-8">
+        Create New Product
+      </h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full px-5 sm:max-w-xl mx-auto space-y-4"
+          className="w-full p-5 sm:max-w-xl mx-auto space-y-4 "
         >
           <FormField
             control={form.control}
@@ -98,7 +88,7 @@ const CreateProduct = () => {
             )}
           />
           <Button type="submit" className="w-full">
-            Submit
+            Add Product
           </Button>
         </form>
       </Form>
