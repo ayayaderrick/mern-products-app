@@ -163,7 +163,7 @@ const Home = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto mt-10 py-12 px-4">
+    <div className="max-w-6xl mx-auto mt-10 py-12 px-4">
       <h1 className="text-xl sm:text-3xl font-semibold text-center">
         Current Products
         <div className="h-1 bg-muted-foreground w-44 mt-2 mx-auto" />
@@ -178,7 +178,7 @@ const Home = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="flex items-center justify-center w-full h-48 object-cover rounded-t-lg"
+                className="flex items-center justify-center w-full h-44 object-cover rounded-t-md"
               />
             </CardHeader>
             <CardContent>
@@ -186,10 +186,10 @@ const Home = () => {
               {/* <CardDescription>This is a description</CardDescription> */}
               <p>Price: ${product.price}</p>
             </CardContent>
-            <CardFooter className="flex justify-between pb-4">
+            <CardFooter className="flex justify-between py-4">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button variant={"outline"}>
+                  <Button className="cursor-pointer" variant={"outline"}>
                     <Pencil />
                     Edit
                   </Button>
@@ -240,6 +240,7 @@ const Home = () => {
                   <DialogFooter className="flex justify-between">
                     <Button
                       type="submit"
+                      className="cursor-pointer"
                       onClick={() => {
                         // toast("Edit product clicked");
                         // Add your edit product logic here
@@ -263,13 +264,7 @@ const Home = () => {
                       Update
                     </Button>
                     <DialogClose asChild>
-                      <Button
-                        variant="outline"
-                        onClick={() => {
-                          toast("Cancel clicked");
-                          // Add your cancel logic here
-                        }}
-                      >
+                      <Button variant="outline" className="cursor-pointer">
                         Cancel
                       </Button>
                     </DialogClose>
@@ -278,6 +273,7 @@ const Home = () => {
               </Dialog>
 
               <Button
+                className="cursor-pointer"
                 variant="destructive"
                 onClick={() => {
                   handleDeleteProduct(product._id);
